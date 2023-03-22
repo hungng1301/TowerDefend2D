@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using Assets.Scripts.Level;
 
 /// <summary>
 /// User interface and events manager.
@@ -22,8 +23,9 @@ public class UiManager : MonoBehaviour
     public GameObject levelUI;
     // Avaliable gold amount
     public Text goldAmount;
-    
 
+    // Invoker command
+    private Invoker invoker;
     // Is game paused?
     private bool paused;
 
@@ -49,6 +51,7 @@ public class UiManager : MonoBehaviour
     void Awake()
     {
         Debug.Assert(pauseMenu && defeatMenu && victoryMenu && levelUI && goldAmount, "Wrong initial parameters");
+        invoker = new Invoker();
     }
 
     /// <summary>
@@ -69,8 +72,7 @@ public class UiManager : MonoBehaviour
             // Pause on escape button
             if (Input.GetButtonDown("Cancel") == true)
             {
-                PauseGame(true);
-                GoToPauseMenu();
+                OnPauseButtonClick();
             }
             // User press mouse button
             if (Input.GetMouseButtonDown(0) == true)
@@ -109,6 +111,34 @@ public class UiManager : MonoBehaviour
         }
     }
 
+    public void OnPauseButtonClick()
+    {
+        invoker.SetCommand(new PauseButtonCommand());
+        invoker.Invoke();
+        CloseAllUI();
+        pauseMenu.SetActive(true);
+    }
+
+    public void OnResumeButtonClick()
+    {
+        invoker.SetCommand(new ResumeButtonCommand());
+        invoker.Invoke();
+        CloseAllUI();
+        levelUI.SetActive(true);
+    }
+
+    public void OnRestartButtonClick()
+    {
+        invoker.SetCommand(new RestartButtonCommand());
+        invoker.Invoke();
+    }
+
+    public void OnBackButtonClick()
+    {
+        invoker.SetCommand(new BackButtonCommand());
+        invoker.Invoke();
+    }
+
     /// <summary>
     /// Stop current scene and load new scene
     /// </summary>
@@ -126,23 +156,6 @@ public class UiManager : MonoBehaviour
     {
         GoToLevel();
         PauseGame(false);
-    }
-
-    /// <summary>
-    /// Resumes the game.
-    /// </summary>
-    public void ResumeGame()
-    {
-        GoToLevel();
-        PauseGame(false);
-    }
-
-    /// <summary>
-    /// Gos to main menu.
-    /// </summary>
-    public void GoToMainMenu()
-    {
-        LoadScene("StartScene");
     }
 
     /// <summary>
@@ -169,16 +182,6 @@ public class UiManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Gos to pause menu.
-    /// </summary>
-    public void GoToPauseMenu()
-    {
-        PauseGame(true);
-        CloseAllUI();
-        pauseMenu.SetActive(true);
-    }
-
-    /// <summary>
     /// Gos to level.
     /// </summary>
     private void GoToLevel()
@@ -198,32 +201,6 @@ public class UiManager : MonoBehaviour
         defeatMenu.SetActive(true);
     }
 
-    /// <summary>
-    /// Gos to victory menu.
-    /// </summary>
-    public void GoToVictoryMenu()
-    {
-        PauseGame(true);
-        CloseAllUI();
-        victoryMenu.SetActive(true);
-    }
-
-    /// <summary>
-    /// Start next level.
-    /// </summary>
-    public void GoToNextLevel()
-    {
-        LoadScene(nextLevel);
-    }
-
-    /// <summary>
-    /// Restarts current level.
-    /// </summary>
-    public void RestartLevel()
-    {
-        string activeScene = SceneManager.GetActiveScene().name;
-        LoadScene(activeScene);
-    }
 
     /// <summary>
     /// Gets current gold amount.

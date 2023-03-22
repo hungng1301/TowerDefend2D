@@ -33,7 +33,7 @@ public class LevelManager : MonoBehaviour
     void OnEnable()
     {
         EventManager.StartListening("Captured", Captured);
-        EventManager.StartListening("AllEnemiesAreDead", AllEnemiesAreDead);
+      //  EventManager.StartListening("AllEnemiesAreDead", AllEnemiesAreDead);
     }
 
     /// <summary>
@@ -42,7 +42,7 @@ public class LevelManager : MonoBehaviour
     void OnDisable()
     {
         EventManager.StopListening("Captured", Captured);
-        EventManager.StopListening("AllEnemiesAreDead", AllEnemiesAreDead);
+       // EventManager.StopListening("AllEnemiesAreDead", AllEnemiesAreDead);
     }
 
     /// <summary>
@@ -108,19 +108,5 @@ public class LevelManager : MonoBehaviour
         uiManager.GoToDefeatMenu();
     }
 
-    /// <summary>
-    /// All enemies are dead.
-    /// </summary>
-    /// <param name="obj">Object.</param>
-    /// <param name="param">Parameter.</param>
-    private void AllEnemiesAreDead(GameObject obj, string param)
-    {
-        spawnNumbers--;
-        // Enemies dead at all spawners
-        if (spawnNumbers <= 0)
-        {
-            // Victory
-            uiManager.GoToVictoryMenu();
-        }
-    }
+    
 }
