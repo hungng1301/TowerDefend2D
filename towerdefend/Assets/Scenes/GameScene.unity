@@ -6455,7 +6455,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1743174044}
         m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
-        m_MethodName: GoToPauseMenu
+        m_MethodName: OnPauseButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6946,7 +6946,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1743174044}
         m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
-        m_MethodName: GoToMainMenu
+        m_MethodName: OnBackButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7566,7 +7566,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1743174044}
         m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
-        m_MethodName: ResumeGame
+        m_MethodName: OnResumeButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7781,7 +7781,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1743174044}
         m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
-        m_MethodName: RestartLevel
+        m_MethodName: OnRestartButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8914,7 +8914,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1743174044}
         m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
-        m_MethodName: GoToMainMenu
+        m_MethodName: OnBackButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9032,6 +9032,7 @@ MonoBehaviour:
   victoryMenu: {fileID: 1254430540}
   levelUI: {fileID: 1049171785}
   goldAmount: {fileID: 1912901060}
+  invoker: {fileID: 0}
 --- !u!114 &1743174045
 MonoBehaviour:
   m_ObjectHideFlags: 0

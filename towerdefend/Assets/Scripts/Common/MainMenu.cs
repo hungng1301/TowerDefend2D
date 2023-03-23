@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Level;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,19 +9,21 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class MainMenu : MonoBehaviour
 {
-    /// <summary>
-    /// Load level.
-    /// </summary>
-    public void NewGame()
+    private Invoker invoker;
+
+    private void Awake()
     {
-        SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
+        invoker = new Invoker();
+    }
+    public void OnStartButtonClick()
+    {
+        invoker.SetCommand(new StartButtonCommand());
+        invoker.Invoke();
     }
 
-    /// <summary>
-    /// Close application.
-    /// </summary>
-    public void Quit()
+    public void OnQuitButtonClick()
     {
-        Application.Quit();
+        invoker.SetCommand(new QuitButtonCommand());
+        invoker.Invoke();
     }
 }
