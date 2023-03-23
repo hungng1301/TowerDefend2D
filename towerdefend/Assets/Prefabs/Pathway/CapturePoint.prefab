@@ -61,5 +61,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bac92e0595614734bbad8aefd00329d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alreadyCaptured: 0
+  alreadyCaptured: 5
   HP: {fileID: 0}
